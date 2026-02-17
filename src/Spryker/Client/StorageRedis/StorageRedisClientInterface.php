@@ -20,12 +20,11 @@ interface StorageRedisClientInterface
      * @param string $key
      * @param string $value
      * @param int|null $ttl
-     *
-     * @throws \Exception
+     * @param string|null $flag
      *
      * @return bool
      */
-    public function set(string $key, string $value, ?int $ttl = null): bool;
+    public function set(string $key, string $value, ?int $ttl = null, ?string $flag = null): bool;
 
     /**
      * Specification:

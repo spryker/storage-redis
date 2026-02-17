@@ -15,12 +15,13 @@ interface StorageRedisWrapperInterface
      * @param string $key
      * @param mixed $value
      * @param int|null $ttl
+     * @param string|null $flag
      *
-     * @throws \Exception
+     * @throws \Spryker\Client\StorageRedis\Exception\StorageRedisException
      *
      * @return bool
      */
-    public function set(string $key, $value, ?int $ttl = null): bool;
+    public function set(string $key, $value, ?int $ttl = null, ?string $flag = null): bool;
 
     /**
      * @param array $items

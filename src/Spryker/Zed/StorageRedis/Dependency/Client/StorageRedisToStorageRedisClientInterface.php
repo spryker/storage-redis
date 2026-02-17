@@ -22,10 +22,11 @@ interface StorageRedisToStorageRedisClientInterface
      * @param string $key
      * @param string $value
      * @param int|null $ttl
+     * @param string|null $flag
      *
      * @return bool
      */
-    public function set(string $key, string $value, ?int $ttl = null): bool;
+    public function set(string $key, string $value, ?int $ttl = null, ?string $flag = null): bool;
 
     /**
      * @param string $pattern
