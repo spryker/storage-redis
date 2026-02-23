@@ -497,7 +497,7 @@ class StorageRedisWrapperTest extends Unit
 
         $this->redisClientMock
             ->method('scan')
-            ->will($this->returnCallback($returnCallback));
+            ->willReturnCallback($returnCallback);
 
         // Act
         $storageScanResultTransfer = $this->storageRedisWrapper->scanKeys('test:*', 5, 0);
