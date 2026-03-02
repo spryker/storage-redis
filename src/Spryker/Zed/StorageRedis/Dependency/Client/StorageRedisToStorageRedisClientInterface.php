@@ -18,22 +18,7 @@ interface StorageRedisToStorageRedisClientInterface
      */
     public function get(string $key);
 
-    /**
-     * @param string $key
-     * @param string $value
-     * @param int|null $ttl
-     * @param string|null $flag
-     *
-     * @return bool
-     */
     public function set(string $key, string $value, ?int $ttl = null, ?string $flag = null): bool;
 
-    /**
-     * @param string $pattern
-     * @param int $limit
-     * @param int $cursor
-     *
-     * @return \Generated\Shared\Transfer\StorageScanResultTransfer
-     */
     public function scanKeys(string $pattern, int $limit, int $cursor): StorageScanResultTransfer;
 }

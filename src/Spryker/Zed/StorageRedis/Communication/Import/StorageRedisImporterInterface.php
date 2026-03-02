@@ -9,10 +9,5 @@ namespace Spryker\Zed\StorageRedis\Communication\Import;
 
 interface StorageRedisImporterInterface
 {
-    /**
-     * @param string $source
-     *
-     * @return bool
-     */
     public function import(string $source): bool;
 }

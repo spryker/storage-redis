@@ -59,9 +59,6 @@ class StorageRedisClientTest extends Unit
      */
     protected $storageRedisClient;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -70,9 +67,6 @@ class StorageRedisClientTest extends Unit
         $this->cleanupStorage();
     }
 
-    /**
-     * @return void
-     */
     public function testCanSetAndGetValueForKey(): void
     {
         $this->storageRedisClient->set(static::DUMMY_KEY, static::DUMMY_VALUE);
@@ -80,9 +74,6 @@ class StorageRedisClientTest extends Unit
         $this->assertSame(static::DUMMY_VALUE, $this->storageRedisClient->get(static::DUMMY_KEY));
     }
 
-    /**
-     * @return void
-     */
     public function testCanSetValuesForMultipleKeys(): void
     {
         $this->storageRedisClient->setMulti($this->dummyMultiData);
@@ -90,9 +81,6 @@ class StorageRedisClientTest extends Unit
         $this->assertSame(static::ANOTHER_DUMMY_VALUE, $this->storageRedisClient->get(static::ANOTHER_DUMMY_KEY));
     }
 
-    /**
-     * @return void
-     */
     public function testCanDeleteKey(): void
     {
         $this->storageRedisClient->set(static::DUMMY_KEY, static::DUMMY_VALUE);
@@ -102,9 +90,6 @@ class StorageRedisClientTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testCanDeleteMultipleKeys(): void
     {
         $this->storageRedisClient->setMulti($this->dummyMultiData);
@@ -119,9 +104,6 @@ class StorageRedisClientTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testCanGetValuesForMultipleKeys(): void
     {
         $this->storageRedisClient->setMulti($this->dummyMultiData);
@@ -134,9 +116,6 @@ class StorageRedisClientTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testCanGetAllKeys(): void
     {
         $result = $this->storageRedisClient->getAllKeys();
@@ -144,9 +123,6 @@ class StorageRedisClientTest extends Unit
         $this->assertIsArray($result);
     }
 
-    /**
-     * @return void
-     */
     public function testCanGetKeysByPattern(): void
     {
         $this->storageRedisClient->setMulti($this->dummyMultiData);
@@ -158,9 +134,6 @@ class StorageRedisClientTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testCanSetValueWithTtl(): void
     {
         $this->storageRedisClient->set(static::DUMMY_KEY, static::DUMMY_VALUE, 1);
@@ -188,17 +161,11 @@ class StorageRedisClientTest extends Unit
         return $prefixedKeys;
     }
 
-    /**
-     * @return void
-     */
     protected function tearDown(): void
     {
         $this->cleanupStorage();
     }
 
-    /**
-     * @return void
-     */
     protected function cleanupStorage(): void
     {
         $this->storageRedisClient->deleteMulti(array_keys($this->dummyMultiData));

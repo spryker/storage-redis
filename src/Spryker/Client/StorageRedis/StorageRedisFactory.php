@@ -17,9 +17,6 @@ use Spryker\Client\StorageRedis\Redis\StorageRedisWrapperInterface;
  */
 class StorageRedisFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Client\StorageRedis\Redis\StorageRedisWrapperInterface
-     */
     public function createStorageRedisWrapper(): StorageRedisWrapperInterface
     {
         return new StorageRedisWrapper(
@@ -28,9 +25,6 @@ class StorageRedisFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\StorageRedis\Dependency\Client\StorageRedisToRedisClientInterface
-     */
     public function getRedisClient(): StorageRedisToRedisClientInterface
     {
         return $this->getProvidedDependency(StorageRedisDependencyProvider::CLIENT_REDIS);

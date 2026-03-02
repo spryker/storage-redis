@@ -27,11 +27,6 @@ class StorageRedisDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const CLIENT_STORAGE_REDIS = 'CLIENT_STORAGE_REDIS';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container = $this->addRedisFacade($container);
@@ -40,11 +35,6 @@ class StorageRedisDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addRedisFacade(Container $container): Container
     {
         $container->set(static::FACADE_REDIS, function (Container $container) {
@@ -56,11 +46,6 @@ class StorageRedisDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addStorageRedisClient(Container $container): Container
     {
         $container->set(static::CLIENT_STORAGE_REDIS, function (Container $container) {

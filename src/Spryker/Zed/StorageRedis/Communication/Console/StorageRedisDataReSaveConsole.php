@@ -84,9 +84,6 @@ class StorageRedisDataReSaveConsole extends StoreAwareConsole
      */
     protected const OPTION_DRY_SHORT = 'd';
 
-    /**
-     * @return void
-     */
     protected function configure(): void
     {
         $this
@@ -98,12 +95,6 @@ class StorageRedisDataReSaveConsole extends StoreAwareConsole
             ->addOption(static::OPTION_DRY, static::OPTION_DRY_SHORT, InputOption::VALUE_NONE, 'Dry run: scan and count matching keys without resaving or setting TTL.');
     }
 
-    /**
-     * @param \Symfony\Component\Console\Input\InputInterface $input
-     * @param \Symfony\Component\Console\Output\OutputInterface $output
-     *
-     * @return int
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         ini_set('max_execution_time', 0);

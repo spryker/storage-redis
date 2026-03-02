@@ -9,10 +9,5 @@ namespace Spryker\Zed\StorageRedis\Communication\Export;
 
 interface StorageRedisExporterInterface
 {
-    /**
-     * @param string $destination
-     *
-     * @return bool
-     */
     public function export(string $destination): bool;
 }

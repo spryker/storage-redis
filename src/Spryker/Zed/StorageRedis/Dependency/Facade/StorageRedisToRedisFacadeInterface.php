@@ -9,20 +9,7 @@ namespace Spryker\Zed\StorageRedis\Dependency\Facade;
 
 interface StorageRedisToRedisFacadeInterface
 {
-    /**
-     * @param string $destination
-     * @param int $redisPort
-     * @param string|null $redisHost
-     *
-     * @return bool
-     */
     public function export(string $destination, int $redisPort, ?string $redisHost = null): bool;
 
-    /**
-     * @param string $source
-     * @param string $destination
-     *
-     * @return bool
-     */
     public function import(string $source, string $destination): bool;
 }

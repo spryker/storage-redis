@@ -23,30 +23,12 @@ interface StorageRedisWrapperInterface
      */
     public function set(string $key, $value, ?int $ttl = null, ?string $flag = null): bool;
 
-    /**
-     * @param array $items
-     *
-     * @return void
-     */
     public function setMulti(array $items): void;
 
-    /**
-     * @param string $key
-     *
-     * @return int
-     */
     public function delete(string $key): int;
 
-    /**
-     * @param array $keys
-     *
-     * @return int
-     */
     public function deleteMulti(array $keys): int;
 
-    /**
-     * @return int
-     */
     public function deleteAll(): int;
 
     /**
@@ -56,66 +38,24 @@ interface StorageRedisWrapperInterface
      */
     public function get(string $key);
 
-    /**
-     * @param array $keys
-     *
-     * @return array
-     */
     public function getMulti(array $keys): array;
 
-    /**
-     * @param string|null $section
-     *
-     * @return array
-     */
     public function getStats(?string $section = null): array;
 
-    /**
-     * @return array
-     */
     public function getAllKeys(): array;
 
-    /**
-     * @param string $pattern
-     *
-     * @return array
-     */
     public function getKeys(string $pattern): array;
 
-    /**
-     * @param string $pattern
-     * @param int $limit
-     * @param int $cursor
-     *
-     * @return \Generated\Shared\Transfer\StorageScanResultTransfer
-     */
     public function scanKeys(string $pattern, int $limit, int $cursor): StorageScanResultTransfer;
 
-    /**
-     * @return void
-     */
     public function resetAccessStats(): void;
 
-    /**
-     * @return array
-     */
     public function getAccessStats(): array;
 
-    /**
-     * @return int
-     */
     public function getCountItems(): int;
 
-    /**
-     * @return int
-     */
     public function getDbSize(): int;
 
-    /**
-     * @param bool $debug
-     *
-     * @return void
-     */
     public function setDebug(bool $debug): void;
 
     /**

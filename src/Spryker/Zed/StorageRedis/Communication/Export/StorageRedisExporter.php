@@ -26,11 +26,6 @@ class StorageRedisExporter implements StorageRedisExporterInterface
      */
     protected $redisHost;
 
-    /**
-     * @param \Spryker\Zed\StorageRedis\Dependency\Facade\StorageRedisToRedisFacadeInterface $redisFacade
-     * @param int $redisPort
-     * @param string $redisHost
-     */
     public function __construct(StorageRedisToRedisFacadeInterface $redisFacade, int $redisPort, string $redisHost)
     {
         $this->redisFacade = $redisFacade;
@@ -38,11 +33,6 @@ class StorageRedisExporter implements StorageRedisExporterInterface
         $this->redisHost = $redisHost;
     }
 
-    /**
-     * @param string $destination
-     *
-     * @return bool
-     */
     public function export(string $destination): bool
     {
         return $this->redisFacade->export(

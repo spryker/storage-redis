@@ -21,9 +21,6 @@ use Spryker\Zed\StorageRedis\StorageRedisDependencyProvider;
  */
 class StorageRedisCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Zed\StorageRedis\Communication\Import\StorageRedisImporterInterface
-     */
     public function createStorageRedisImporter(): StorageRedisImporterInterface
     {
         return new StorageRedisImporter(
@@ -32,9 +29,6 @@ class StorageRedisCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\StorageRedis\Communication\Export\StorageRedisExporterInterface
-     */
     public function createStorageRedisExporter(): StorageRedisExporterInterface
     {
         return new StorageRedisExporter(
@@ -44,17 +38,11 @@ class StorageRedisCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\StorageRedis\Dependency\Facade\StorageRedisToRedisFacadeInterface
-     */
     public function getRedisFacade(): StorageRedisToRedisFacadeInterface
     {
         return $this->getProvidedDependency(StorageRedisDependencyProvider::FACADE_REDIS);
     }
 
-    /**
-     * @return \Spryker\Zed\StorageRedis\Dependency\Client\StorageRedisToStorageRedisClientInterface
-     */
     public function getStorageRedisClient(): StorageRedisToStorageRedisClientInterface
     {
         return $this->getProvidedDependency(StorageRedisDependencyProvider::CLIENT_STORAGE_REDIS);

@@ -22,24 +22,11 @@ class StorageRedisToRedisFacadeBridge implements StorageRedisToRedisFacadeInterf
         $this->redisFacade = $redisFacade;
     }
 
-    /**
-     * @param string $destination
-     * @param int $redisPort
-     * @param string|null $redisHost
-     *
-     * @return bool
-     */
     public function export(string $destination, int $redisPort, ?string $redisHost = null): bool
     {
         return $this->redisFacade->export($destination, $redisPort, $redisHost);
     }
 
-    /**
-     * @param string $source
-     * @param string $destination
-     *
-     * @return bool
-     */
     public function import(string $source, string $destination): bool
     {
         return $this->redisFacade->import($source, $destination);

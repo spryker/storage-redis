@@ -21,21 +21,12 @@ class StorageRedisImporter implements StorageRedisImporterInterface
      */
     protected $destination;
 
-    /**
-     * @param \Spryker\Zed\StorageRedis\Dependency\Facade\StorageRedisToRedisFacadeInterface $redisFacade
-     * @param string $destination
-     */
     public function __construct(StorageRedisToRedisFacadeInterface $redisFacade, string $destination)
     {
         $this->redisFacade = $redisFacade;
         $this->destination = $destination;
     }
 
-    /**
-     * @param string $source
-     *
-     * @return bool
-     */
     public function import(string $source): bool
     {
         return $this->redisFacade->import($source, $this->destination);

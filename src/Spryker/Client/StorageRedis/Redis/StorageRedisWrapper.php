@@ -45,10 +45,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
      */
     protected $connectionKey;
 
-    /**
-     * @param \Spryker\Client\StorageRedis\Dependency\Client\StorageRedisToRedisClientInterface $redisClient
-     * @param \Spryker\Client\StorageRedis\StorageRedisConfig $storageRedisConfig
-     */
     public function __construct(
         StorageRedisToRedisClientInterface $redisClient,
         StorageRedisConfig $storageRedisConfig
@@ -62,11 +58,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         $this->setupConnection($this->storageRedisConfig->getRedisConnectionConfiguration());
     }
 
-    /**
-     * @param bool $debug
-     *
-     * @return void
-     */
     public function setDebug(bool $debug): void
     {
         $this->debug = $debug;
@@ -93,9 +84,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getAccessStats(): array
     {
         return $this->accessStats;
@@ -121,11 +109,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         return $result;
     }
 
-    /**
-     * @param array $keys
-     *
-     * @return array
-     */
     public function getMulti(array $keys): array
     {
         if (count($keys) === 0) {
@@ -143,41 +126,21 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         return $values;
     }
 
-    /**
-     * @param string|null $section
-     *
-     * @return array
-     */
     public function getStats(?string $section = null): array
     {
         return $this->redisClient->info($this->connectionKey, $section);
     }
 
-    /**
-     * @return array
-     */
     public function getAllKeys(): array
     {
         return $this->getKeys('*');
     }
 
-    /**
-     * @param string $pattern
-     *
-     * @return array
-     */
     public function getKeys(string $pattern): array
     {
         return $this->redisClient->keys($this->connectionKey, $this->getSearchPattern($pattern));
     }
 
-    /**
-     * @param string $pattern
-     * @param int $limit
-     * @param int $cursor
-     *
-     * @return \Generated\Shared\Transfer\StorageScanResultTransfer
-     */
     public function scanKeys(string $pattern, int $limit, int $cursor): StorageScanResultTransfer
     {
         $result = [];
@@ -226,17 +189,11 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         );
     }
 
-    /**
-     * @return int
-     */
     public function getCountItems(): int
     {
         return count($this->redisClient->keys($this->connectionKey, $this->getSearchPattern()));
     }
 
-    /**
-     * @return int
-     */
     public function getDbSize(): int
     {
         return $this->redisClient->dbSize($this->connectionKey);
@@ -311,11 +268,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         }
     }
 
-    /**
-     * @param string $key
-     *
-     * @return int
-     */
     public function delete(string $key): int
     {
         $key = $this->getKeyName($key);
@@ -325,11 +277,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         return $result;
     }
 
-    /**
-     * @param array $keys
-     *
-     * @return int
-     */
     public function deleteMulti(array $keys): int
     {
         if (count($keys) === 0) {
@@ -347,9 +294,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         return $result;
     }
 
-    /**
-     * @return int
-     */
     public function deleteAll(): int
     {
         $dbSizeBefore = $this->getDbSize();
@@ -371,11 +315,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         return $this->redisClient->eval($this->connectionKey, $script, $numKeys, ...$keysOrArgs);
     }
 
-    /**
-     * @param string $key
-     *
-     * @return void
-     */
     protected function addReadAccessStats(string $key): void
     {
         if ($this->debug) {
@@ -384,11 +323,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         }
     }
 
-    /**
-     * @param array $items
-     *
-     * @return void
-     */
     protected function addMultiWriteAccessStats(array $items): void
     {
         if ($this->debug) {
@@ -397,11 +331,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         }
     }
 
-    /**
-     * @param string $key
-     *
-     * @return void
-     */
     protected function addDeleteAccessStats(string $key): void
     {
         if ($this->debug) {
@@ -410,11 +339,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         }
     }
 
-    /**
-     * @param array $keys
-     *
-     * @return void
-     */
     protected function addMultiDeleteAccessStats(array $keys): void
     {
         if ($this->debug) {
@@ -423,11 +347,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         }
     }
 
-    /**
-     * @param array $keys
-     *
-     * @return void
-     */
     protected function addMultiReadAccessStats(array $keys): void
     {
         if ($this->debug) {
@@ -436,11 +355,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         }
     }
 
-    /**
-     * @param string $key
-     *
-     * @return void
-     */
     protected function addWriteAccessStats(string $key): void
     {
         if ($this->debug) {
@@ -449,31 +363,16 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         }
     }
 
-    /**
-     * @param string $pattern
-     *
-     * @return string
-     */
     protected function getSearchPattern(string $pattern = '*'): string
     {
         return static::KV_PREFIX . $pattern;
     }
 
-    /**
-     * @param string $key
-     *
-     * @return string
-     */
     protected function getKeyName(string $key): string
     {
         return static::KV_PREFIX . $key;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\RedisConfigurationTransfer $configurationTransfer
-     *
-     * @return void
-     */
     protected function setupConnection(RedisConfigurationTransfer $configurationTransfer): void
     {
         $this->redisClient->setupConnection(

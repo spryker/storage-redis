@@ -86,9 +86,6 @@ class StorageRedisConfig extends AbstractBundleConfig
         return $this->get(StorageRedisConstants::STORAGE_REDIS_DATA_SOURCE_NAMES, []);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\RedisCredentialsTransfer
-     */
     protected function getConnectionCredentials(): RedisCredentialsTransfer
     {
         return (new RedisCredentialsTransfer())

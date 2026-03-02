@@ -70,9 +70,6 @@ class StorageRedisWrapperTest extends Unit
      */
     protected $redisClientMock;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -88,9 +85,6 @@ class StorageRedisWrapperTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testCanGetSameValueWhenFailedToJsonDecode(): void
     {
         $this->redisClientMock->method('get')->willReturnCallback(function ($connectionKey, $key) {
@@ -102,9 +96,6 @@ class StorageRedisWrapperTest extends Unit
         $this->assertSame(static::PLAIN_TEXT_DATA, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testCanGetDecodedJsonData(): void
     {
         $this->redisClientMock->method('get')->willReturnCallback(function ($connectionKey, $key) {
@@ -120,9 +111,6 @@ class StorageRedisWrapperTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testReadStatsAreUpdatedWhenInDebugMode(): void
     {
         $this->storageRedisWrapper->get(static::PLAIN_TEXT_KEY);
@@ -141,9 +129,6 @@ class StorageRedisWrapperTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetsMultiValuesWithNoKeysReturnsEmptyArray(): void
     {
         $result = $this->storageRedisWrapper->getMulti([]);
@@ -151,9 +136,6 @@ class StorageRedisWrapperTest extends Unit
         $this->assertEmpty($result);
     }
 
-    /**
-     * @return void
-     */
     public function testGetsMultiValues(): void
     {
         $this->redisClientMock->method('mget')->willReturnCallback(function ($connectionKey, $keys) {
@@ -169,9 +151,6 @@ class StorageRedisWrapperTest extends Unit
         $this->assertSame(static::PLAIN_TEXT_DATA, $result[$prefixedKey]);
     }
 
-    /**
-     * @return void
-     */
     public function testGetsStats(): void
     {
         $section = 'section';
@@ -187,9 +166,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->getStats($section);
     }
 
-    /**
-     * @return void
-     */
     public function testGetsAllKeys(): void
     {
         $this->redisClientMock
@@ -205,9 +181,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->getAllKeys();
     }
 
-    /**
-     * @return void
-     */
     public function testGetsItemsCount(): void
     {
         $itemsCount = rand(1, 10);
@@ -216,9 +189,6 @@ class StorageRedisWrapperTest extends Unit
         $this->assertSame($itemsCount, $this->storageRedisWrapper->getCountItems());
     }
 
-    /**
-     * @return void
-     */
     public function testCallsSetWithNoTtl(): void
     {
         $this->redisClientMock
@@ -236,9 +206,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->set(static::PLAIN_TEXT_KEY, static::PLAIN_TEXT_DATA);
     }
 
-    /**
-     * @return void
-     */
     public function testCallsSetexWithTtlSet(): void
     {
         $ttl = 1;
@@ -258,9 +225,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->set(static::PLAIN_TEXT_KEY, static::PLAIN_TEXT_DATA, $ttl);
     }
 
-    /**
-     * @return void
-     */
     public function testWillThrowExceptionWhenEmptyResultIsReturnedBySet(): void
     {
         $this->expectException(StorageRedisException::class);
@@ -268,9 +232,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->set(static::PLAIN_TEXT_KEY, static::PLAIN_TEXT_DATA);
     }
 
-    /**
-     * @return void
-     */
     public function testWriteAccessStatsAreUpdatedWhenInDebugMode(): void
     {
         $this->redisClientMock->method('set')->willReturn(true);
@@ -291,9 +252,6 @@ class StorageRedisWrapperTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testSetThrowsExceptionWhenResultIsFalsy(): void
     {
         $this->expectException(StorageRedisException::class);
@@ -303,9 +261,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->set(static::PLAIN_TEXT_KEY, static::PLAIN_TEXT_DATA);
     }
 
-    /**
-     * @return void
-     */
     public function testSetexWillThrowExceptionWhenResultIsFalsy(): void
     {
         $this->expectException(StorageRedisException::class);
@@ -315,9 +270,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->set(static::PLAIN_TEXT_KEY, static::PLAIN_TEXT_DATA, 1);
     }
 
-    /**
-     * @return void
-     */
     public function testSetMulti(): void
     {
         $this->redisClientMock
@@ -339,9 +291,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->setMulti($items);
     }
 
-    /**
-     * @return void
-     */
     public function testSetMultiReturnsEarlyWhenNoItems(): void
     {
         $this->redisClientMock->expects($this->never())->method('mset');
@@ -349,9 +298,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->setMulti([]);
     }
 
-    /**
-     * @return void
-     */
     public function testSetMultiThrowsExceptionWhenResultIsFalsy(): void
     {
         $this->expectException(StorageRedisException::class);
@@ -365,9 +311,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->setMulti($items);
     }
 
-    /**
-     * @return void
-     */
     public function testCanDeleteData(): void
     {
         $this->redisClientMock
@@ -384,9 +327,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->delete($keyToDelete);
     }
 
-    /**
-     * @return void
-     */
     public function testCanDeleteMultiData(): void
     {
         $this->redisClientMock
@@ -403,9 +343,6 @@ class StorageRedisWrapperTest extends Unit
         $this->storageRedisWrapper->deleteMulti($keysToDelete);
     }
 
-    /**
-     * @return void
-     */
     public function testCanDeleteAllData(): void
     {
         $this->redisClientMock->method('keys')->willReturnCallback(function () {
@@ -413,9 +350,6 @@ class StorageRedisWrapperTest extends Unit
         });
     }
 
-    /**
-     * @return void
-     */
     public function testScanKeysCallsScanWithCorrectKeyNameAndReturnsStorageScanResultTransfer(): void
     {
         // Arrange
@@ -453,9 +387,6 @@ class StorageRedisWrapperTest extends Unit
         $this->assertSame($expectedKeys, $storageScanResultTransfer->getKeys());
     }
 
-    /**
-     * @return void
-     */
     public function testScanKeysReturnsEmptyStorageScanResultTransfer(): void
     {
         // Arrange
@@ -471,9 +402,6 @@ class StorageRedisWrapperTest extends Unit
         $this->assertSame(0, $storageScanResultTransfer->getCursor());
     }
 
-    /**
-     * @return void
-     */
     public function testScankeysReturnsStorageScanResultTransferWithLimitedKeys(): void
     {
         // Arrange
@@ -507,9 +435,6 @@ class StorageRedisWrapperTest extends Unit
         $this->assertSame(array_slice(array_merge($expectedKeys1, $expectedKeys2), 0, 5), $storageScanResultTransfer->getKeys());
     }
 
-    /**
-     * @return void
-     */
     protected function setupDummyStorage(): void
     {
         $this->dummyStorage = [
@@ -518,11 +443,6 @@ class StorageRedisWrapperTest extends Unit
         ];
     }
 
-    /**
-     * @param string $key
-     *
-     * @return string
-     */
     protected function addPrefixToKey(string $key): string
     {
         return sprintf('%s:%s', static::KEY_PREFIX, $key);

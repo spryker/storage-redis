@@ -35,26 +35,11 @@ class StorageRedisToStorageRedisClientBridge implements StorageRedisToStorageRed
         return $this->storageRedisClient->get($key);
     }
 
-    /**
-     * @param string $key
-     * @param string $value
-     * @param int|null $ttl
-     * @param string|null $flag
-     *
-     * @return bool
-     */
     public function set(string $key, string $value, ?int $ttl = null, ?string $flag = null): bool
     {
         return $this->storageRedisClient->set($key, $value, $ttl, $flag);
     }
 
-    /**
-     * @param string $pattern
-     * @param int $limit
-     * @param int $cursor
-     *
-     * @return \Generated\Shared\Transfer\StorageScanResultTransfer
-     */
     public function scanKeys(string $pattern, int $limit, int $cursor): StorageScanResultTransfer
     {
         return $this->storageRedisClient->scanKeys($pattern, $limit, $cursor);
