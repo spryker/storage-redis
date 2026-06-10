@@ -92,8 +92,9 @@ class StorageRedisConfig extends AbstractBundleConfig
             ->setScheme($this->getScheme())
             ->setHost($this->get(StorageRedisConstants::STORAGE_REDIS_HOST))
             ->setPort($this->get(StorageRedisConstants::STORAGE_REDIS_PORT))
+            ->setUsername($this->get(StorageRedisConstants::STORAGE_REDIS_USER, ''))
             ->setDatabase($this->get(StorageRedisConstants::STORAGE_REDIS_DATABASE, static::REDIS_DEFAULT_DATABASE))
-            ->setPassword($this->get(StorageRedisConstants::STORAGE_REDIS_PASSWORD, false))
+            ->setPassword($this->get(StorageRedisConstants::STORAGE_REDIS_PASSWORD, ''))
             ->setIsPersistent($this->get(StorageRedisConstants::STORAGE_REDIS_PERSISTENT_CONNECTION, false));
     }
 

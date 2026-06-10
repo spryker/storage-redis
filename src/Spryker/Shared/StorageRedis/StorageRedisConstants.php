@@ -76,6 +76,14 @@ interface StorageRedisConstants
 
     /**
      * Specification:
+     * - Defines a username for Redis ACL authentication when used as storage.
+     *
+     * @api
+     */
+    public const string STORAGE_REDIS_USER = 'STORAGE_REDIS:STORAGE_REDIS_USER';
+
+    /**
+     * Specification:
      * - Specifies an array of DSN strings for a multi-instance cluster/replication Redis setup.
      *
      * @api
