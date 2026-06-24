@@ -13,6 +13,8 @@ use Spryker\Zed\Kernel\AbstractBundleConfig;
 class StorageRedisConfig extends AbstractBundleConfig
 {
     /**
+     * @api
+     *
      * @var int
      */
     public const DEFAULT_REDIS_DATABASE = 0;
