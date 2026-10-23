@@ -20,6 +20,7 @@
         <property name="database" type="int"/>
         <property name="password" type="string"/>
         <property name="isPersistent" type="bool"/>
+        <property name="username" type="string"/>
     </transfer>
 
 </transfers>

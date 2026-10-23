@@ -16,13 +16,6 @@ interface StorageRedisClientInterface
      * - Sets key to hold the value with an optional time-to-live parameter.
      *
      * @api
-     *
-     * @param string $key
-     * @param string $value
-     * @param int|null $ttl
-     * @param string|null $flag
-     *
-     * @return bool
      */
     public function set(string $key, string $value, ?int $ttl = null, ?string $flag = null): bool;
 
@@ -33,9 +26,7 @@ interface StorageRedisClientInterface
      *
      * @api
      *
-     * @param array $items
-     *
-     * @return void
+     * @param array<string, mixed> $items
      */
     public function setMulti(array $items): void;
 
@@ -44,8 +35,6 @@ interface StorageRedisClientInterface
      * - Deletes a value under specified key.
      *
      * @api
-     *
-     * @param string $key
      *
      * @return mixed
      */
@@ -59,9 +48,7 @@ interface StorageRedisClientInterface
      *
      * @api
      *
-     * @param array $keys
-     *
-     * @return int
+     * @param array<string> $keys
      */
     public function deleteMulti(array $keys): int;
 
@@ -70,8 +57,6 @@ interface StorageRedisClientInterface
      * - Deletes all values.
      *
      * @api
-     *
-     * @return int
      */
     public function deleteAll(): int;
 
@@ -80,8 +65,6 @@ interface StorageRedisClientInterface
      * - Gets value of a key.
      *
      * @api
-     *
-     * @param string $key
      *
      * @return mixed
      */
@@ -93,9 +76,7 @@ interface StorageRedisClientInterface
      *
      * @api
      *
-     * @param array $keys
-     *
-     * @return array
+     * @param array<string> $keys
      */
     public function getMulti(array $keys): array;
 
@@ -104,8 +85,6 @@ interface StorageRedisClientInterface
      * - Gets array with statistical information.
      *
      * @api
-     *
-     * @return array
      */
     public function getStats(): array;
 
@@ -114,8 +93,6 @@ interface StorageRedisClientInterface
      * - Returns a list of all the keys as an array.
      *
      * @api
-     *
-     * @return array
      */
     public function getAllKeys(): array;
 
@@ -124,10 +101,6 @@ interface StorageRedisClientInterface
      * - Gets a list of all the keys available in a storage.
      *
      * @api
-     *
-     * @param string $pattern
-     *
-     * @return array
      */
     public function getKeys(string $pattern): array;
 
@@ -138,12 +111,6 @@ interface StorageRedisClientInterface
      * - Returns an array with a cursor and keys.
      *
      * @api
-     *
-     * @param string $pattern
-     * @param int $limit
-     * @param int $cursor
-     *
-     * @return \Generated\Shared\Transfer\StorageScanResultTransfer
      */
     public function scanKeys(string $pattern, int $limit, int $cursor): StorageScanResultTransfer;
 
@@ -152,8 +119,6 @@ interface StorageRedisClientInterface
      * - Resets statistical information about access to a storage.
      *
      * @api
-     *
-     * @return void
      */
     public function resetAccessStats(): void;
 
@@ -162,8 +127,6 @@ interface StorageRedisClientInterface
      * - Gets statistical information about access to a storage.
      *
      * @api
-     *
-     * @return array
      */
     public function getAccessStats(): array;
 
@@ -172,8 +135,6 @@ interface StorageRedisClientInterface
      * - Gets amount of items in the storage.
      *
      * @api
-     *
-     * @return int
      */
     public function getCountItems(): int;
 
@@ -182,8 +143,6 @@ interface StorageRedisClientInterface
      * - Gets amount of items in the database.
      *
      * @api
-     *
-     * @return int
      */
     public function getDbSize(): int;
 
@@ -192,10 +151,6 @@ interface StorageRedisClientInterface
      * - Enables or disables debug mode.
      *
      * @api
-     *
-     * @param bool $debug
-     *
-     * @return void
      */
     public function setDebug(bool $debug): void;
 
@@ -205,11 +160,7 @@ interface StorageRedisClientInterface
      *
      * @api
      *
-     * @param string $script
-     * @param int $numKeys
      * @param mixed ...$keysOrArgs
-     *
-     * @return bool
      */
     public function evaluate(string $script, int $numKeys, ...$keysOrArgs): bool;
 }

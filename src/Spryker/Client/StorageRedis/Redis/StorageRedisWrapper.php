@@ -65,8 +65,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
 
     /**
      * Sets, reads, writes stats array
-     *
-     * @return void
      */
     public function resetAccessStats(): void
     {
@@ -90,8 +88,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
     }
 
     /**
-     * @param string $key
-     *
      * @return mixed
      */
     public function get(string $key)
@@ -158,7 +154,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
     /**
      * @param array<string> $keys1
      * @param array<string> $keys2
-     * @param int|null $limit
      *
      * @return array<string>
      */
@@ -172,9 +167,6 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
     }
 
     /**
-     * @param string $match
-     * @param int $cursor
-     *
      * @return array [string, string[]]
      */
     protected function redisScan(string $match, int $cursor): array
@@ -200,14 +192,9 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
     }
 
     /**
-     * @param string $key
      * @param mixed $value
-     * @param int|null $ttl
-     * @param string|null $flag
      *
      * @throws \Spryker\Client\StorageRedis\Exception\StorageRedisException
-     *
-     * @return bool
      */
     public function set(string $key, $value, ?int $ttl = null, ?string $flag = null): bool
     {
@@ -230,11 +217,9 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
     }
 
     /**
-     * @param array $items
+     * @param array<string, mixed> $items
      *
      * @throws \Spryker\Client\StorageRedis\Exception\StorageRedisException
-     *
-     * @return void
      */
     public function setMulti(array $items): void
     {
@@ -304,11 +289,7 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
     }
 
     /**
-     * @param string $script
-     * @param int $numKeys
      * @param mixed ...$keysOrArgs
-     *
-     * @return bool
      */
     public function evaluate(string $script, int $numKeys, ...$keysOrArgs): bool
     {
