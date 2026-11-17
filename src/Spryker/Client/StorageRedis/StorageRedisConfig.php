@@ -12,6 +12,9 @@ use Generated\Shared\Transfer\RedisCredentialsTransfer;
 use Spryker\Client\Kernel\AbstractBundleConfig;
 use Spryker\Shared\StorageRedis\StorageRedisConstants;
 
+/**
+ * @SuppressWarnings(PHPMD.BooleanGetMethodName)
+ */
 class StorageRedisConfig extends AbstractBundleConfig
 {
     /**

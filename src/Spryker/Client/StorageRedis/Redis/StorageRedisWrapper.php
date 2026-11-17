@@ -144,7 +144,8 @@ class StorageRedisWrapper implements StorageRedisWrapperInterface
         do {
             [$nextCursor, $keys] = $this->redisScan($this->getSearchPattern($pattern), $nextCursor ?? $cursor);
             $result = $this->concatWithLimit($result, $keys, $limit);
-        } while ($nextCursor > 0 && count($result) < $limit);
+            $hasNextBatch = $nextCursor > 0 && count($result) < $limit;
+        } while ($hasNextBatch);
 
         return (new StorageScanResultTransfer())
             ->setCursor((int)$nextCursor)
